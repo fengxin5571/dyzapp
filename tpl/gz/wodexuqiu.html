@@ -1,0 +1,27 @@
+<div class="md_name"><{$user.zz}></div>
+<input type="hidden" value="<{$total}>" class="qdxq_total">
+<{foreach from=$mdxq item=row}>
+<div class="one" style="margin-bottom:8px;">
+	<div class="one_inner">
+		<div><p style="font-weight:bold;"><{$row.date}></p></div>
+		<div style="flex:1;-webkit-box-flex:1;-webkit-flex:1;margin:0 14px;color:#333333">
+			<p class="md_nr"><{$row.content}></p>
+			<{if $row.img!=""}>
+			<div class="img_box">
+				<{foreach from=$row.img item=tu name=loop}>
+				<img src="<{$tu}>" alt="" onclick='chakan_img(this,<{$smarty.foreach.loop.index}>)'>
+				<{/foreach}>
+			</div>
+			<{/if}>
+			<p class="md_time"><span><{$row.time}></span></p>
+			<p class="md_11 md_11_wd"><{if $row.is_pl==1}><span onclick="pl(<{$row.id}>)"><img src="../../image/img-qm/plbg.png" alt="">评论</span><{/if}>	<!-- <span onclick="liulan(id,this)" class="zan"><img src="../../image/img-qm/liulan.png" alt="">浏览</span>--><{if $row.jiejue==0}><span onclick="jiejue(<{$row.id}>,this)" class="zan"><img src="../../image/img-qm/jiejue.png" alt=""><i>解决</i></span><{else}><span class="zan"><img src="../../image/img-qm/jiejue1.png" alt=""><i class="cur">已解决</i></span><{/if}></p>
+			<{foreach from=$row.pl item=pl}>
+			<div class="pl_box_wd">
+				<p class="p1"> <{$pl.user.zz}> <{$pl.user.name}></p>
+				<p class="p2"><{$pl.content}></p>
+			</div> 
+			<{/foreach}>           
+		</div>
+	</div>
+</div>
+<{/foreach}>

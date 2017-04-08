@@ -1,0 +1,18 @@
+<input type="hidden" value="<{$total}>" class="xiaoxi_total">
+<{foreach from=$xiaoxi item=row}>
+<div class="xiaoxi_list" onclick="open_xxdhk(<{$row.user.id}>,this)" tapmode='tap-active'>
+	<div class="xiaoxi_tx cur1">
+		<span class="name"><{$row.user.zz}></span><p class="shuxian"></p>
+		<{if $row.weidu==0}><span class="num" style="display:none;">0</span><{else}><span class="num hongdian"><{$row.weidu}></span><{/if}>
+	</div>
+	<div class="xiaoxi_info">
+		<p class="xiaoxi_info1"><{$row.user.name}></p>
+		<{if $row.content_type==0}>
+		<p class="xiaoxi_info2"><{$row.content}></p>
+		<{else}>
+		<p class="xiaoxi_info2">您收到一条消息</p>
+		<{/if}>
+	</div>
+	<div class="xiaoxi_time"><{$row.addtime1}></div>
+</div>
+<{/foreach}>

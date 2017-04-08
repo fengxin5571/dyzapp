@@ -1,0 +1,43 @@
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+<style>
+.qrcode,.qrwxcode{
+	width:100%;
+	margin:0 auto;
+	margin-top: 30%;
+}
+.qrwxcode img{
+	width:100%
+}
+.sub_title,.sub_desc{
+	text-align: center;
+}
+.login_box .action {
+    display: block;
+    margin:  0 auto;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 2.55555556;
+    border-radius: 6px;
+    color: #000;
+    width: 220px;
+    border: 1px solid rgba(0,0,0,.2);
+}
+</style>
+<script src="/dyzapp/themes/js/jquery.min.js"></script>
+<div class="login_box">
+      <{if $flag == "qrwxcode" }>
+      <div class="qrwxcode" ng-class="{hide: isScan || isAssociationLogin || isBrokenNetwork}">
+          <{$QRWXCode}>
+          <div ng-show="!isNeedRefresh" class="">
+              <p class="sub_title">使用手机微信扫码登录</p>
+              <p class="sub_desc">网页版微信需要配合手机使用</p>
+              <a href="http://192.168.2.143/dyzapp/index.php?action=qrcode&dir=nake&do=success_login" ng-click="isScan = false;" class="action" style="display:none" id="send_btn">点击发送</a>
+          </div>
+       
+      </div>
+      
+      <{elseif $flag == 'done'}>
+      <{$msg}>
+      <{/if}>
+</div>

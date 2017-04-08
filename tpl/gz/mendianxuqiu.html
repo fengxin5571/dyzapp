@@ -1,0 +1,34 @@
+<{foreach from=$mdxq item=mdxqrow}>
+<input type="hidden" value="<{$total}>" class="mdxq_total">
+<div class="one" style="margin-bottom:8px;">
+	<div class="one_inner">
+		<div style="width:40px;">
+			<div class="cir"><span><{$mdxqrow.user.name}></span><div class="shuxian"></div></div>
+			<!-- <p class="area_1">内蒙古</p> -->
+		</div>
+		<div style="flex: 1;-webkit-box-flex: 1;-webkit-flex: 1;margin:0 14px;color:#333333">
+			<p class="md_tit"><{$mdxqrow.user.zz}></p>
+			<p class="md_time"><{$mdxqrow.date}> <span><{$mdxqrow.time}></span></p>
+			<p class="md_nr"><{$mdxqrow.content}></p>
+			<{if $mdxqrow.img!=""}>
+			<div class="img_box">
+				<{foreach from=$mdxqrow.img item=tu name=loop}>
+				<img src="<{$tu}>" alt="" onclick='chakan_img(this,<{$smarty.foreach.loop.index}>)'>
+				<{/foreach}>
+			</div>
+			<{/if}>
+			<{if $mdxqrow.is_pl==1}>
+			<p class="md_11">
+				<span onclick="pl(<{$mdxqrow.id}>)" tapmode='tap-active'><img src="../../image/img-qm/plbg.png" alt="">评论</span>
+			</p>
+			<{/if}>			
+		</div>
+	</div>
+	<{foreach from=$mdxqrow.pl item=pl}>
+	<div class="pl_box">
+		<p class="p1"><{$pl.user.zz}> <{$pl.user.name}></p>
+		<p class="p2"><{$pl.content}></p>
+	</div> 
+	<{/foreach}>
+</div>
+<{/foreach}>

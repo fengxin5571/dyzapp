@@ -1,0 +1,38 @@
+<div class="gzq_list">
+	<{foreach from=$gzq item=gzqrow}>
+	<div class="one" style="margin-bottom:8px;">
+		<div class="one_inner">
+			<div style="width:40px;">
+				<div class="cir"><span><{$gzqrow.user.name}></span><div class="shuxian"></div></div>
+				<!-- <p class="area_1">内蒙古</p> -->
+			</div>
+			<div style="flex: 1;-webkit-box-flex: 1;-webkit-flex: 1;margin:0 14px;color:#333333">
+				<p class="md_tit"><{$gzqrow.user.zz}></p>
+				<p class="md_time"><{$gzqrow.date}> <span><{$gzqrow.time}></span></p>
+				<p class="md_nr"><{$gzqrow.content}></p>
+				<{if $gzqrow.img!=""}>
+				<div class="img_box">
+					<{foreach from=$gzqrow.img item=tu}>
+					<img src="<{$tu}>" alt="">
+					<{/foreach}>
+				</div>
+				<{/if}>
+				<p class="md_11">
+				<span onclick="pl(<{$gzqrow.id}>)" tapmode='tap-active'><img src="../../image/img-qm/plbg.png" alt="">评论</span>
+				<{if $gzqrow.is_zan<1}>
+				<span onclick="zan(<{$gzqrow.id}>,this)" class="zan"><img src="../../image/img-qm/zan.png" alt="">赞</span>
+				<{else}>
+				<span class="zan cur"><img src="../../image/img-qm/zan1.png" alt="">已赞</span>
+				<{/if}>
+				</p>
+				<{foreach from=$gzqrow.pl item=pl}>
+				<div class="pl_box">
+					<p class="p1"><{$pl.user.zz}> <{$pl.user.name}></p>
+					<p class="p2"><{$pl.content}></p>
+				</div> 
+				<{/foreach}>				
+			</div>
+		</div>
+	</div>
+	<{/foreach}>
+</div>

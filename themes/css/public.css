@@ -1,0 +1,14 @@
+body,ul,li,img,div,a,p,h1,h2,h3,h4,h5,h6,iframe,dl,dt,dd,select,input{margin:0;padding:0;}
+body{font-family:"微软雅黑";color:#333333;overflow-x:hidden;}
+p{line-height:100%;}
+ul{list-style:none;}
+li{float:left;}
+a{
+	text-decoration:none;
+	color:#a5a6a6;
+	outline:none;
+	display:block;
+		}
+div,img{display:block;}
+input{outline:none;border:none;border-radius: 0;background-color:transparent}
+table{border-collapse:collapse;}

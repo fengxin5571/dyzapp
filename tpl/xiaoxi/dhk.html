@@ -1,0 +1,17 @@
+<{foreach from=$dh item=row}>
+<div class="dh clearfix">
+	<span class="dh_time"><{$row.addtime1}></span>
+	<div class="dh_tx dh_tx<{if $row.type==1}>2<{else}>1<{/if}>">
+		<span class="name"><{if $row.type==1}><{$row.wo.name}><{else}><{$row.to.name}><{/if}></span>
+		<p class="shuxian"></p>
+	</div>
+	<div class="dh_con dh_con<{if $row.type==1}>2<{else}>1<{/if}>">
+		<i class="xiaosanjiao"></i>
+		<{if $row.content_type==0}>
+		<p><{$row.content}></p>
+		<{elseif $row.content_type==1}>
+		<img src="<{$row.content}>" class='img'>
+		<{/if}>
+	</div>
+</div>
+<{/foreach}>

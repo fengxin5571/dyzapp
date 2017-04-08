@@ -1,0 +1,37 @@
+<li onclick="zhankai(this)" tapmode='tap-active' zk='1'>
+	<div class="cir"><span>总部</span><div class="shuxian"></div></div>
+	<p>总部</p>
+</li>
+<div class="ej_box">
+	<{foreach from=$zb_user item=zbrow}>
+	<div class="ej_tx" tapmode='tap-active'>
+		<div class="cir" onclick="open_dhk(<{$zbrow.id}>)">
+			<span><{$zbrow.name}></span>
+			<div class="shuxian"></div>
+		</div>
+		<p class="check"><{$zbrow.name}> <{if $zbrow.zbname!=""}>- <{$zbrow.zbname}><{else}><{/if}></p>
+	</div>
+	<{/foreach}>
+</div>
+<{foreach from=$szm item=s}>
+<p class="zm_a"><{$s.szm}></p>
+	<{foreach from=$txl item=txlrow}>
+	<{if $txlrow.szm==$s.szm}>
+	<li onclick="zhankai(this)" tapmode='tap-active' zk='1'>
+		<div class="cir"><span><{$txlrow.name}></span><div class="shuxian"></div></div>
+		<p><{$txlrow.fgsname}>-<{$txlrow.name}></p>
+	</li>
+		<div class="ej_box">   
+			<{foreach from=$txlrow.yh_user item=row}>
+			<div class="ej_tx"  tapmode='tap-active'>
+				<div class="cir" onclick="open_dhk(<{$row.user.id}>)">
+					<span><{if $row.user.roleid==3}>负责人<{else}>专员<{/if}></span>
+					<div class="shuxian"></div>
+				</div>
+				<p class='check'><{$row.user.name}></p>
+			</div>
+			<{/foreach}>
+		</div> 
+	<{/if}>
+	<{/foreach}>
+<{/foreach}>

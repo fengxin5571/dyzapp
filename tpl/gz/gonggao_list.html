@@ -1,0 +1,11 @@
+<{foreach from=$gg item=ggrow}>
+<div class="gglb_box">
+	<div class="xgtj_list clearfix" onclick="open_ggxq(<{$ggrow.id}>)" tapmode='tap-active'>
+		<img src="<{$ggrow.img}>" class="xgtj_list_img">
+		<div>
+			<p class="xgtj_list_info"><{$ggrow.title}></p>
+			<span class="time"><{$ggrow.addtime}></span>
+		</div>
+	</div>
+</div>
+<{/foreach}>

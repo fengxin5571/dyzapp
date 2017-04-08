@@ -1,0 +1,9 @@
+<input type="hidden" value="<{$total}>" class="sjxq_total">
+<{foreach from=$sale item=row}>
+<ul class="xs_box clearfix">
+	<li><{$row.name}></li>
+	<li><{$row.money}>元/个</li>
+	<li><{$row.xl}>个</li>
+	<li><{$row.zj}>元</li>
+</ul>
+<{/foreach}>

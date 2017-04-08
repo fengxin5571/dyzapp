@@ -1,0 +1,25 @@
+<input type="hidden" class="xsdt_total" value="<{$total}>">
+<{foreach from=$xsdt item=row}>
+<div class="xsdt">
+	<div class="tx cur1"><span><{$row.user.name}></span><p class="shuxian"></p></div>
+	<div class="xsdt_right">
+		<p class="dizhi"><{$row.user.zz}></p>
+		<p class="time"><{$row.addtime}></p>
+		<div class="xsdt_info xsdt_info1">
+			<i class="yuandian1"></i>
+			<span>姓名：<{$row.username}></span>
+			<span>性别：<{if $row.sex==1}>男<{elseif $row.sex==2}>女<{else}>保密<{/if}></span>
+			<span style="margin:0;">年龄：<{$row.age}></span>
+			<span>联系方式：<{$row.tel}></span>
+		</div>
+		<div class="xsdt_info xsdt_info2">
+			<i class="yuandian2"></i>
+			<p class="xsdt_info2_name"><{$row.goods.name}></p>
+			<p class="shuju">
+				<span>数量x<{$row.shuliang}></span>
+				<span class="money"><i class="red">￥</i><{$row.goods.money*$row.shuliang}></span>
+			</p>
+		</div>
+	</div>
+</div>
+<{/foreach}>

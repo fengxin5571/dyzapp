@@ -1,0 +1,7 @@
+<{foreach from=$xslr item=row}>
+<ul class="clearfix">
+	<li class="cp_name"><{$row.name}></li>
+	<li><i class="dj"><{$row.money}></i>元</li>
+	<li><i class="kc" id="a<{$row.kid}>"><{$row.kucun}></i> <span onclick="kcjs(<{$row.kid}>,this)">-</span></li>
+</ul>
+<{/foreach}>

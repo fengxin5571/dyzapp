@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script src="/dyzapp/themes/js/jquery.min.js"></script>
+<button onclick="test()" >test</button>
+
+</body>
+<script>
+function test(){
+	$.ajax({
+		url:'http://192.168.2.143/dyzapp/index.php?action=user_groups&dir=groups&do=add_groups',
+	    type:'get',
+		data:{admin_id:'1',groups_users:new Array(Array(2,'fx'),Array(3,'fx1'),Array(1,'总部'))},
+		dataType:'json',
+		success:function(data){
+			alert(data.code);
+		}
+		
+	});
+}
+</script>
+</html>

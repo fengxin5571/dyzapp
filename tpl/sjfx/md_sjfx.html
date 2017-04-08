@@ -1,0 +1,72 @@
+<div class="shuju_one">
+   <p class="shuju_tit"><{$day_total.addtime}>销售总额 | <span><{$day_total.zj}>元</span><b onclick="zonge(0)" tapmode='tap-active'><img src="../../image/img-qm/left.png" alt=""></b></p>
+   <div class="shuju1">
+	   <div class="zhibiao">
+		   <{foreach from=$daysale item=dayrow}>
+		   <p>
+			   <span class="point_<{$smarty.foreach.loop.iteration}>"></span><{if $dayrow.id==1}>独一张老膏药<{elseif $dayrow.id==2}>独一张炙骨宁袋<{elseif $dayrow.id==3}>独一张温泉<{elseif $dayrow.id==4}>仪年堂气血能量养生仪<{/if}><br>
+			   <span>&nbsp;&nbsp;<{if $dayrow.zj==''}>0<{else}><{$dayrow.zj}><{/if}><i>元</i></span>
+		   </p>
+		   <{/foreach}>
+	   </div>
+	   <div class="shujubiao">
+			<{foreach from=$daysale item=dayrow}>
+			<dl>
+			   <dt>
+					<div style="background-color:<{if $dayrow.id==4}>#6c95f3<{elseif $dayrow.id==3}>#7b6cf3<{elseif $dayrow.id==2}>#27cc8d<{elseif $dayrow.id==1}>#fcac40<{/if}>;height:<{$dayrow.bfb}>%"></div>
+					<p><span><{$dayrow.bfb}></span>%</p>
+				</dt>
+			   <dd><{if $dayrow.id==4}>仪年堂气血能量养生仪<{elseif $dayrow.id==3}>独一张温泉<{elseif $dayrow.id==2}>独一张炙骨宁袋<{elseif $dayrow.id==1}>独一张老膏药<{/if}></dd>
+		   </dl>
+		   <{/foreach}>
+	   </div>               
+   </div>
+</div>
+<div class="shuju_one">
+   <p class="shuju_tit" style="color:#8ec0e9"><{$week_total.month}>月第<{$week_total.week}>周销售总额 | <span><{$week_total.zj}>元</span><b onclick="zonge(1)" tapmode='tap-active'><img src="../../image/img-qm/left.png" alt=""></b></p>
+   <div class="shuju1">
+	   <div class="zhibiao">
+		   <{foreach from=$weeksale item=weekrow}>
+		   <p>
+			   <span class="point_<{$smarty.foreach.loop.iteration}>"></span><{if $weekrow.id==1}>独一张老膏药<{elseif $weekrow.id==2}>独一张炙骨宁袋<{elseif $weekrow.id==3}>独一张温泉<{elseif $weekrow.id==4}>仪年堂气血能量养生仪<{/if}><br>
+			   <span>&nbsp;&nbsp;<{if $weekrow.zj==''}>0<{else}><{$weekrow.zj}><{/if}><i>元</i></span>
+		   </p>
+		   <{/foreach}>
+	   </div>
+	   <div class="shujubiao">
+			<{foreach from=$weeksale item=weekrow}>
+			<dl>
+			   <dt>
+					<div style="background-color:<{if $weekrow.id==4}>#6c95f3<{elseif $weekrow.id==3}>#7b6cf3<{elseif $weekrow.id==2}>#27cc8d<{elseif $weekrow.id==1}>#fcac40<{/if}>;height:<{$weekrow.bfb}>%"></div>
+					<p><span><{$weekrow.bfb}></span>%</p>
+				</dt>
+			   <dd><{if $weekrow.id==4}>仪年堂气血能量养生仪<{elseif $weekrow.id==3}>独一张温泉<{elseif $weekrow.id==2}>独一张炙骨宁袋<{elseif $weekrow.id==1}>独一张老膏药<{/if}></dd>
+		   </dl>
+		   <{/foreach}>
+	   </div>               
+   </div>
+</div>
+<div class="shuju_one">
+   <p class="shuju_tit" style="color:#fcac40"><{$month_total.month}>月销售总额 | <span><{$month_total.zj}>元</span><b onclick="zonge(2)" tapmode='tap-active'><img src="../../image/img-qm/left.png" alt=""></b></p>
+   <div class="shuju1">
+	   <div class="zhibiao">
+		   <{foreach from=$monthsale item=monthrow}>
+		   <p>
+			   <span class="point_<{$smarty.foreach.loop.iteration}>"></span><{if $monthrow.id==1}>独一张老膏药<{elseif $monthrow.id==2}>独一张炙骨宁袋<{elseif $monthrow.id==3}>独一张温泉<{elseif $monthrow.id==4}>仪年堂气血能量养生仪<{/if}><br>
+			   <span>&nbsp;&nbsp;<{if $monthrow.zj==''}>0<{else}><{$monthrow.zj}><{/if}><i>元</i></span>
+		   </p>
+		   <{/foreach}>
+	   </div>
+	   <div class="shujubiao">
+			<{foreach from=$monthsale item=monthrow}>
+			<dl>
+			   <dt>
+					<div style="background-color:<{if $monthrow.id==4}>#6c95f3<{elseif $monthrow.id==3}>#7b6cf3<{elseif $monthrow.id==2}>#27cc8d<{elseif $monthrow.id==1}>#fcac40<{/if}>;height:<{$monthrow.bfb}>%"></div>
+					<p><span><{$monthrow.bfb}></span>%</p>
+				</dt>
+			   <dd><{if $monthrow.id==4}>仪年堂气血能量养生仪<{elseif $monthrow.id==3}>独一张温泉<{elseif $monthrow.id==2}>独一张炙骨宁袋<{elseif $monthrow.id==1}>独一张老膏药<{/if}></dd>
+		   </dl>
+		   <{/foreach}>
+	   </div>               
+   </div>
+</div>

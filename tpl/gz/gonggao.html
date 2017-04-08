@@ -1,0 +1,19 @@
+<p class='gglb_tit'>公告列表</p>
+<div class="gglb_big" onclick="open_ggxq(<{$gg_tuijian.id}>)" tapmode='tap-active'>
+	<img src="<{$gg_tuijian.img}>">
+	<p><{$gg_tuijian.title}></p>
+</div>
+<div class="gg_list">
+<input type="hidden" value="<{$total}>" class="gg_total">
+	<{foreach from=$gg item=ggrow}>
+	<div class="gglb_box">
+		<div class="xgtj_list clearfix" onclick="open_ggxq(<{$ggrow.id}>)" tapmode='tap-active'>
+			<img src="<{$ggrow.img}>" class="xgtj_list_img">
+			<div>
+				<p class="xgtj_list_info"><{$ggrow.title}></p>
+				<span class="time"><{$ggrow.addtime}></span>
+			</div>
+		</div>
+	</div>
+	<{/foreach}>
+</div>

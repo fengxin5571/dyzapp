@@ -1,0 +1,25 @@
+<h6>按门店名称搜索</h6>
+<div class="search_box">
+    <input type="text" placeholder="请输入门店名称" class="sousuo">
+    <div onclick="sousuo()" tapmode='tap-active'>搜索</div>
+</div>
+<h6 style="margin-top: 4px;">按省市区称搜索</h6>
+<select name="" id="sheng" onchange="sheng()" tapmode='tap-active'>
+<option value="0">请选择</option>
+<{foreach from=$sheng item=prow}>
+<option value="<{$prow.provinceid}>"><{$prow.province}></option>
+<{/foreach}>
+</select>
+<span>省</span>
+<select name="" id="shi" onchange="shi()" tapmode='tap-active'>
+<option value="0">请选择</option>
+</select>
+<span>市</span>
+<select name="" id="mendian">
+<option value="0">请选择</option>
+</select>
+<span>门店</span>
+<h6 style="margin-top: 4px;">搜索记录</h6>
+<{foreach from=$jilu item=row}>
+<p class="ssjl" onclick="open_sousuo(<{$row.mid}>)" tapmode='tap-active'><{$row.md}></p>
+<{/foreach}>
