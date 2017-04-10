@@ -76,7 +76,8 @@ class pdo_mysql{
 	*/
 	public function p_e($sql,$arr,$debug=0){
 		if($debug==0){
-			$res = $this->pdo->prepare($sql);    //先写好sql码，稍后带入参数
+			$res = $this->pdo->prepare($sql);  
+			//先写好sql码，稍后带入参数
 			if($res->execute($arr)){          //execute()方法负责执行准备好的查询
 				$this->res = $res;
 				return true;

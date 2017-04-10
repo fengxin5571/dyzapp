@@ -32,7 +32,9 @@ if($do=="txl"){
 		$txl=array();
 	}
 	//模版
+	$flag=$_REQUEST['flag']??'0';//0未默认通信录 1群聊通讯录
 	$smt = new smarty();smarty_cfg($smt);
+	$smt->assign("flag",$flag);
 	$smt->assign('szm',$szm);
 	$smt->assign('txl',$txl);
 	$smt->assign('zb_user',$zb_user);
