@@ -3,7 +3,7 @@ if(!defined('CORE'))exit("error!");
 //加入群聊
 if($do == "add_groups"){
     $admin_id = $_REQUEST['admin_id'];//群主用户id
-    $groups_users = $_REQUEST['groups_users'];//群内用户id
+    $groups_users = json_decode($_REQUEST['groups_users']);//群内用户id
     if(!empty($admin_id)&&!empty($groups_users)&&is_array($groups_users)){
         $admin_name = $db->select(0,1,"rv_user","name",array("id = $admin_id"),"id desc");
         array_unshift($groups_users, array($admin_id,$admin_name[name]));//将自己加入到群组数组中
@@ -15,7 +15,7 @@ if($do == "add_groups"){
             $groups_users=unique($groups_users);//去除重复人员
             foreach ($groups_users as $value){
                 $item_list_tmp .=$item_list_tmp ? ",(?,?,?)" : "(?,?,?)";
-                array_push($params,$ug_id,$value[0],"'$value[1]'");
+                array_push($params,$ug_id,$value[0],"$value[1]");
             }
             $sql .=$item_list_tmp;
             $db->p_e($sql,$params);
@@ -29,13 +29,32 @@ if($do == "add_groups"){
 }elseif($do == "qlxx"){//群聊信息
     $gid=$_REQUEST['gid'];//群聊id
     if($gid){
-        $sql=" SELECT count(gu_id) from rv_group_to_users where gu_gid=?";
+        $sql=" SELECT * from rv_group_to_users where gu_gid=?";
         $db->p_e($sql, array($gid));
-        $user_nums=$db->fetch_count();//群聊人数
-        $groups_info=$db->select(0, 1, "rv_users_groups","*,date_format(ug_create_time,'%m月%d日 %H:%i') as ug_create_time1",array("ug_id = $gid"),' ug_id desc');//群聊信息
-        echo '{"code":"200","gid":"'.$gid.'","groups_info":"'.$groups_info.'","user_num":"'.$user_nums.'"}';
+        $groups_users_list=$db->fetchAll();//群聊组员
+        $groups_info=$db->select(0, 1, "rv_users_groups","*,date_format(ug_create_time,'%m月%d日 %H:%i') as ug_create_time_format",array("ug_id = $gid"),' ug_id desc');//群聊信息
+        echo '{"code":"200","gid":"'.$gid.'","groups_info":"'.$groups_info.'","groups_users_list":"'.$groups_users_list.'"}';
         exit();
     }
+    echo '{"code":"500"}';
+    exit();
+}elseif($do =='edit'){ //编辑群聊信息
+    $gid=$_REQUEST['gid'];
+    $flag=$_REQUEST['flag'];
+    if($gid&&$flag){
+        if($flag == "groups_name"){//修改群名
+            if($db->update(0,1, "rv_users_groups", array("ug_name='$_REQUEST[groups_name]'"),array("ug_id=$gid"))){
+                echo '{"code":"200","msg":"修改成功"}';
+                exit();
+            }
+        }elseif($flag == "nick_name"){//修改昵称
+            $uid=$_REQUEST['uid'];
+            if($db->update(0,1, "rv_group_to_users",array("gu_group_nick='$_REQUEST[nick_name]'"),array("gu_gid =$gid","gu_uid=$uid"))){
+                echo '{"code":"200","msg":"修改成功"}';
+                exit();
+            }
+        }
+    } 
     echo '{"code":"500"}';
     exit();
 }elseif($do == "test"){

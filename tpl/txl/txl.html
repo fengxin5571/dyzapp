@@ -46,7 +46,7 @@
 </li>
 <div class="ej_box">
 	<{foreach from=$zb_user item=zbrow}>
-	<div class="ej_tx" tapmode='tap-active' child-id="<{$zbrow.id}>">
+	<div class="ej_tx" tapmode='tap-active' data-id="<{$zbrow.id}>">
 		<div class="tap-t" onclick="open_dhk(<{$zbrow.id}>)">
 			<div class="cir" >
 				<span><{$zbrow.name}></span>
@@ -67,7 +67,7 @@
 	</li>
 		<div class="ej_box">   
 			<{foreach from=$txlrow.yh_user item=row}>
-			<div class="ej_tx"  tapmode='tap-active' child-id="<{$row.user.id}>">
+			<div class="ej_tx"  tapmode='tap-active' data-id = "<{$row.user.id}>">
 			    <div class="tap-t" onclick="open_dhk(<{$row.user.id}>)">
 					<div class="cir" >
 						<span><{if $row.user.roleid==3}>负责人<{else}>专员<{/if}></span>

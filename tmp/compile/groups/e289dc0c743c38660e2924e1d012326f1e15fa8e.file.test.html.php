@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-04-10 10:25:31
+<?php /* Smarty version Smarty-3.1.12, created on 2017-04-11 17:05:00
          compiled from ".\tpl\groups\test.html" */ ?>
 <?php /*%%SmartyHeaderCode:1038558e8759ad42f76-19435989%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'e289dc0c743c38660e2924e1d012326f1e15fa8e' => 
     array (
       0 => '.\\tpl\\groups\\test.html',
-      1 => 1491791126,
+      1 => 1491901497,
       2 => 'file',
     ),
   ),
@@ -35,13 +35,13 @@ function test(){
 	$.ajax({
 		url:'http://192.168.2.143/dyzapp/index.php?action=user_groups&dir=groups&do=add_groups',
 	    type:'get',
-		data:{admin_id:'1',groups_users:new Array(Array(2,'fx'),Array(2,'fx'),Array(1,'总部'))},
+		data:{admin_id:'1',groups_users:{{1,'fx'},{2,'fx2'}}},
 		dataType:'json',
 		success:function(data){
 			alert(data.code);
 		}
 		
-	});
+	}); 
 }
 </script>
 </html><?php }} ?>

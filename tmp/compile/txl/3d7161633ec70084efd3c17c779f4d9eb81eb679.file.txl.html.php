@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-04-10 16:50:03
+<?php /* Smarty version Smarty-3.1.12, created on 2017-04-11 11:15:29
          compiled from ".\tpl\txl\txl.html" */ ?>
 <?php /*%%SmartyHeaderCode:2482658a41112840166-67915359%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '3d7161633ec70084efd3c17c779f4d9eb81eb679' => 
     array (
       0 => '.\\tpl\\txl\\txl.html',
-      1 => 1491814177,
+      1 => 1491880451,
       2 => 'file',
     ),
   ),
@@ -108,7 +108,7 @@ $_smarty_tpl->tpl_vars['row']->_loop = true;
 foreach ($_from as $_smarty_tpl->tpl_vars['zbrow']->key => $_smarty_tpl->tpl_vars['zbrow']->value){
 $_smarty_tpl->tpl_vars['zbrow']->_loop = true;
 ?>
-	<div class="ej_tx" tapmode='tap-active' child-id="<?php echo $_smarty_tpl->tpl_vars['zbrow']->value['id'];?>
+	<div class="ej_tx" tapmode='tap-active' data-id="<?php echo $_smarty_tpl->tpl_vars['zbrow']->value['id'];?>
 ">
 		<div class="tap-t" onclick="open_dhk(<?php echo $_smarty_tpl->tpl_vars['zbrow']->value['id'];?>
 )">
@@ -150,7 +150,7 @@ $_smarty_tpl->tpl_vars['txlrow']->_loop = true;
 foreach ($_from as $_smarty_tpl->tpl_vars['row']->key => $_smarty_tpl->tpl_vars['row']->value){
 $_smarty_tpl->tpl_vars['row']->_loop = true;
 ?>
-			<div class="ej_tx"  tapmode='tap-active' child-id="<?php echo $_smarty_tpl->tpl_vars['row']->value['user']['id'];?>
+			<div class="ej_tx"  tapmode='tap-active' data-id = "<?php echo $_smarty_tpl->tpl_vars['row']->value['user']['id'];?>
 ">
 			    <div class="tap-t" onclick="open_dhk(<?php echo $_smarty_tpl->tpl_vars['row']->value['user']['id'];?>
 )">
