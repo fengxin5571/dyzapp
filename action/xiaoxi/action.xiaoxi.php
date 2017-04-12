@@ -2,7 +2,7 @@
 if(!defined('CORE'))exit("error!"); 
 //消息列表
 if($do=="xiaoxi"){
-	$uid=$_POST['uid']??1;
+	$uid=$_POST['uid']??169;
 	$pagenum=10;
 	$page=$_POST['page']??1;
 	$page=($page-1)*$pagenum;
@@ -34,8 +34,36 @@ if($do=="xiaoxi"){
 	$db->p_e($sql,array($uid));
 	$total=$db->fetch_count();
 	$total=ceil($total/$pagenum);
+
+	
+	$sql="select * ,date_format(ug_create_time,'%m月%d日') as addtime1 from rv_users_groups where ug_id in( SELECT gu_gid from rv_group_to_users where gu_uid=?)";
+	$db->p_e($sql, array($uid));
+	$user_groups_list=$db->fetchAll();
+	foreach ($user_groups_list as &$groups){
+	    $groups['ug_name']=$groups['ug_name'] == '未命名'? '未命名的群聊':$groups['ug_name'];
+	    $sql="select *,date_format(addtime,'%m月%d日') as addtime1 from rv_groups_xiaoxi where id in (SELECT max(id) FROM rv_groups_xiaoxi where togid= ? GROUP BY togid) order by addtime desc";
+	    $db->p_e($sql, array($groups['ug_id']));
+	    $from_xiaoxi=$db->fetchRow();
+	    if($groups['ug_admin_id'] == $uid){//如果是群主时 不管有无消息显示群聊信息
+	        $groups['admin']=1;
+	    }
+	    if($from_xiaoxi){//有消息时
+	        $groups['xiaoxi']=$from_xiaoxi;
+	        $sql="SELECT count(*) from rv_groups_msg_details where guid=? and is_du=0 and gid=?";
+	        $db->p_e($sql, array($uid,$groups['xiaoxi']['togid']));
+	        $groups['weidu']=$db->fetch_count();
+	        $sql="select gu_group_nick from rv_group_to_users where 1=1 and gu_uid=?";
+	        $db->p_e($sql, array($groups['xiaoxi']['from_uid']));
+	        $from_name=$db->fetchRow();
+	        $groups['xiaoxi']['from_name']=$from_name['gu_group_nick'];
+	    }
+	     
+	    
+	}
+
 	//模版
 	$smt = new smarty();smarty_cfg($smt);
+	$smt->assign("groups",$user_groups_list);
 	$smt->assign('xiaoxi',$xiaoxi);
 	$smt->assign('total',$total);
 	$smt->display('xiaoxi.html');

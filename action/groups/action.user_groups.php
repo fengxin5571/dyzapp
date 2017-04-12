@@ -31,9 +31,9 @@ if($do == "add_groups"){
     if($gid){
         $sql=" SELECT * from rv_group_to_users where gu_gid=?";
         $db->p_e($sql, array($gid));
-        $groups_users_list=$db->fetchAll();//群聊组员
-        $groups_info=$db->select(0, 1, "rv_users_groups","*,date_format(ug_create_time,'%m月%d日 %H:%i') as ug_create_time_format",array("ug_id = $gid"),' ug_id desc');//群聊信息
-        echo '{"code":"200","gid":"'.$gid.'","groups_info":"'.$groups_info.'","groups_users_list":"'.$groups_users_list.'"}';
+        $groups_users_list=json_encode($db->fetchAll());//群聊组员
+        $groups_info=json_encode($db->select(0, 1, "rv_users_groups","*,date_format(ug_create_time,'%m月%d日 %H:%i') as ug_create_time_format",array("ug_id = $gid"),' ug_id desc'));//群聊信息
+        echo '{"code":"200","gid":"'.$gid.'","groups_info":'.$groups_info.',"groups_users_list":'.$groups_users_list.'}';
         exit();
     }
     echo '{"code":"500"}';
