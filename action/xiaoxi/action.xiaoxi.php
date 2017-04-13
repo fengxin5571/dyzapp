@@ -2,7 +2,7 @@
 if(!defined('CORE'))exit("error!"); 
 //消息列表
 if($do=="xiaoxi"){
-	$uid=$_POST['uid']??169;
+	$uid=$_POST['uid']??1;
 	$pagenum=10;
 	$page=$_POST['page']??1;
 	$page=($page-1)*$pagenum;
@@ -35,7 +35,7 @@ if($do=="xiaoxi"){
 	$total=$db->fetch_count();
 	$total=ceil($total/$pagenum);
 
-	
+	//获取群聊消息
 	$sql="select * ,date_format(ug_create_time,'%m月%d日') as addtime1 from rv_users_groups where ug_id in( SELECT gu_gid from rv_group_to_users where gu_uid=?)";
 	$db->p_e($sql, array($uid));
 	$user_groups_list=$db->fetchAll();
@@ -49,7 +49,7 @@ if($do=="xiaoxi"){
 	    }
 	    if($from_xiaoxi){//有消息时
 	        $groups['xiaoxi']=$from_xiaoxi;
-	        $sql="SELECT count(*) from rv_groups_msg_details where guid=? and is_du=0 and gid=?";
+	        $sql="SELECT count(*) from rv_groups_msg_details where guid=? and is_du=0 and gid=?";//获取未读信息
 	        $db->p_e($sql, array($uid,$groups['xiaoxi']['togid']));
 	        $groups['weidu']=$db->fetch_count();
 	        $sql="select gu_group_nick from rv_group_to_users where 1=1 and gu_uid=?";

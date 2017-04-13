@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-04-12 17:56:59
+<?php /* Smarty version Smarty-3.1.12, created on 2017-04-13 14:58:45
          compiled from ".\tpl\xiaoxi\xiaoxi.html" */ ?>
 <?php /*%%SmartyHeaderCode:2172058a42078623c81-80551899%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'fef5c462cf9a56d8a235d4d4ab360f9451711beb' => 
     array (
       0 => '.\\tpl\\xiaoxi\\xiaoxi.html',
-      1 => 1491991012,
+      1 => 1492066718,
       2 => 'file',
     ),
   ),
@@ -63,7 +63,7 @@ $_smarty_tpl->tpl_vars['row']->_loop = true;
 <?php if ($_smarty_tpl->tpl_vars['row']->value['xiaoxi']||$_smarty_tpl->tpl_vars['row']->value['admin']){?>
 <div class="xiaoxi_list" onclick="open_xxdhk(<?php echo $_smarty_tpl->tpl_vars['row']->value['user']['id'];?>
 ,this)" tapmode='tap-active'>
-	<div class="xiaoxi_tx cur1">
+	<div class="xiaoxi_tx cur2">
 		<span class="name">群聊</span><p class="shuxian"></p>
 		<?php if ($_smarty_tpl->tpl_vars['row']->value['weidu']==0){?><span class="num" style="display:none;">0</span><?php }else{ ?><span class="num hongdian"><?php echo $_smarty_tpl->tpl_vars['row']->value['weidu'];?>
 </span><?php }?>

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-04-12 16:08:56
+<?php /* Smarty version Smarty-3.1.12, created on 2017-04-13 15:17:40
          compiled from ".\tpl\groups\test.html" */ ?>
 <?php /*%%SmartyHeaderCode:1038558e8759ad42f76-19435989%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'e289dc0c743c38660e2924e1d012326f1e15fa8e' => 
     array (
       0 => '.\\tpl\\groups\\test.html',
-      1 => 1491984534,
+      1 => 1492067849,
       2 => 'file',
     ),
   ),
@@ -33,7 +33,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <script>
 function test(){
 	$.ajax({
-		url:'http://192.168.2.143/dyzapp/index.php?action=user_groups&dir=groups&do=qlxx&gid=55',
+		url:'http://192.168.2.143/dyzapp/index.php?action=user_groups&dir=groups&do=leave_groups&gid=55&uid=173',
 	    type:'get',
 		
 		dataType:'json',
