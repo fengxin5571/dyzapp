@@ -34,13 +34,13 @@ if($do=="xiaoxi"){
 	$db->p_e($sql,array($uid));
 	$total=$db->fetch_count();
 	$total=ceil($total/$pagenum);
-
+    
 	//获取群聊消息
 	$sql="select * ,date_format(ug_create_time,'%m月%d日') as addtime1 from rv_users_groups where ug_id in( SELECT gu_gid from rv_group_to_users where gu_uid=?)";
 	$db->p_e($sql, array($uid));
 	$user_groups_list=$db->fetchAll();
 	foreach ($user_groups_list as &$groups){
-	    $groups['ug_name']=$groups['ug_name'] == '未命名'? '未命名的群聊':$groups['ug_name'];
+	    $groups['ug_name']=$groups['ug_name'] == '未命名'||empty($groups['ug_name'])? '未命名的群聊':$groups['ug_name'];
 	    $sql="select *,date_format(addtime,'%m月%d日') as addtime1 from rv_groups_xiaoxi where id in (SELECT max(id) FROM rv_groups_xiaoxi where togid= ? GROUP BY togid) order by addtime desc";
 	    $db->p_e($sql, array($groups['ug_id']));
 	    $from_xiaoxi=$db->fetchRow();
@@ -60,7 +60,7 @@ if($do=="xiaoxi"){
 	     
 	    
 	}
-
+    
 	//模版
 	$smt = new smarty();smarty_cfg($smt);
 	$smt->assign("groups",$user_groups_list);

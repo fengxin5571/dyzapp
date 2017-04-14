@@ -6,19 +6,36 @@
 </head>
 <body>
 <script src="/dyzapp/themes/js/jquery.min.js"></script>
+<script src="/dyzapp/themes/js/socket.io.js"></script>
 <button onclick="test()" >test</button>
 
 </body>
 <script>
+function getQueryString(e) {
+    var t = new RegExp("(^|&)" + e + "=([^&]*)(&|$)");
+    var a = window.location.search.substr(1).match(t);
+    if (a != null) return a[2];
+    return ""
+}
+var uid=getQueryString('uid');
+var socket = io('http://192.168.2.143:4001');
+socket.on('connect', function(){
+	socket.emit('login', uid);
+	socket.emit('join',uid,"group1");
+});
+
+socket.on('sixin_to_groups',function(msg){
+	alert(msg);
+});
 function test(){
 	$.ajax({
-		url:'http://192.168.2.143/dyzapp/index.php?action=user_groups&dir=groups&do=leave_groups&gid=55&uid=173',
+		url:'http://192.168.2.143/dyzapp/index.php?action=user_groups&dir=groups&do=fasixin&gid=55&uid=173&groups_room=group1&txt=123',
 	    type:'get',
 		
 		dataType:'json',
 		success:function(data){
-			console.log(data.groups_info)
-			alert(data.groups_info[0]['ug_name']);
+			console.log(data.code)
+			
 			
 		}
 		

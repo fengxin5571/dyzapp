@@ -100,6 +100,23 @@ if($do == "add_groups"){
         exit;
     }
     
+}elseif($do =="fasixin"){ //发群聊
+    $uid = $_REQUEST['uid'];
+    $gid = $_REQUEST['gid'];
+    $groups_room=$_REQUEST['groups_room'];
+    $txt=$_REQUEST['txt'];
+    $nowtime=date('m月d日 H:i');
+    $cont=array('lx'=>0,'nr'=>$txt,'time'=>date('m月d日 H:i'));
+    $cont=json_encode($cont);
+    $sql= "insert into rv_groups_xiaoxi (from_uid,togid,content,content_type) values(?,?,?,0)";
+    if($db->p_e($sql, array($uid,$gid,$txt))){//成功后像socket 服务端推送数据
+        to_msg(array('type'=>'sixin_to_groups','cont'=>$cont,'to'=>$groups_room));//推送消息
+        echo '{"code":"200","time":"'.$nowtime.'"}';
+        exit();
+    }
+    echo '{"code":"500"}';
+    exit();
+   
 }elseif($do == "test"){
     $smt = new smarty();smarty_cfg($smt);
     $smt->display("test.html");

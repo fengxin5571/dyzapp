@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-04-13 15:17:40
+<?php /* Smarty version Smarty-3.1.12, created on 2017-04-14 14:30:03
          compiled from ".\tpl\groups\test.html" */ ?>
 <?php /*%%SmartyHeaderCode:1038558e8759ad42f76-19435989%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'e289dc0c743c38660e2924e1d012326f1e15fa8e' => 
     array (
       0 => '.\\tpl\\groups\\test.html',
-      1 => 1492067849,
+      1 => 1492151373,
       2 => 'file',
     ),
   ),
@@ -27,19 +27,36 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 </head>
 <body>
 <script src="/dyzapp/themes/js/jquery.min.js"></script>
+<script src="/dyzapp/themes/js/socket.io.js"></script>
 <button onclick="test()" >test</button>
 
 </body>
 <script>
+function getQueryString(e) {
+    var t = new RegExp("(^|&)" + e + "=([^&]*)(&|$)");
+    var a = window.location.search.substr(1).match(t);
+    if (a != null) return a[2];
+    return ""
+}
+var uid=getQueryString('uid');
+var socket = io('http://192.168.2.143:4001');
+socket.on('connect', function(){
+	socket.emit('login', uid);
+	socket.emit('join',uid,"group1");
+});
+
+socket.on('sixin_to_groups',function(msg){
+	alert(msg);
+});
 function test(){
 	$.ajax({
-		url:'http://192.168.2.143/dyzapp/index.php?action=user_groups&dir=groups&do=leave_groups&gid=55&uid=173',
+		url:'http://192.168.2.143/dyzapp/index.php?action=user_groups&dir=groups&do=fasixin&gid=55&uid=173&groups_room=group1&txt=123',
 	    type:'get',
 		
 		dataType:'json',
 		success:function(data){
-			console.log(data.groups_info)
-			alert(data.groups_info[0]['ug_name']);
+			console.log(data.code)
+			
 			
 		}
 		
