@@ -18,7 +18,7 @@
 <{/foreach}>
 <{foreach from=$groups item=row}>
 <{if $row.xiaoxi or $row.admin}>
-<div class="xiaoxi_list" onclick="open_xxdhk(<{$row.user.id}>,this)" tapmode='tap-active'>
+<div class="xiaoxi_list" onclick="open_qlxxdhk(<{$row.user.id}>,this)" tapmode='tap-active'>
 	<div class="xiaoxi_tx cur2">
 		<span class="name">群聊</span><p class="shuxian"></p>
 		<{if $row.weidu==0}><span class="num" style="display:none;">0</span><{else}><span class="num hongdian"><{$row.weidu}></span><{/if}>

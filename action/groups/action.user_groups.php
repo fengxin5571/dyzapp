@@ -44,18 +44,18 @@ if($do == "add_groups"){
     if($gid&&$flag){
         if($flag == "groups_name"){//修改群名
             if($db->update(0,1, "rv_users_groups", array("ug_name='$_REQUEST[groups_name]'"),array("ug_id=$gid"))){
-                echo '{"code":"200","msg":"修改成功"}';
+                echo '{"code":"200","msg":"修改成功","value":"'.$_REQUEST[groups_name].'"}';
                 exit();
             }
         }elseif($flag == "nick_name"){//修改昵称
             $uid=$_REQUEST['uid'];
             if($db->update(0,1, "rv_group_to_users",array("gu_group_nick='$_REQUEST[nick_name]'"),array("gu_gid =$gid","gu_uid=$uid"))){
-                echo '{"code":"200","msg":"修改成功"}';
+                echo '{"code":"200","msg":"修改成功","value":"'.$_REQUEST[nick_name].'"}';
                 exit();
             }
         }elseif($flag == "notice"){//修改公告
             if($db->update(0, 1, 'rv_users_groups', array("ug_notice='$_REQUEST[notice]'"),array("ug_id=$gid"))){
-                echo '{"code":"200","msg":"修改成功"}';
+                echo '{"code":"200","msg":"修改成功","value":"'.$_REQUEST[notice].'"}';
                 exit();
             }
         }
