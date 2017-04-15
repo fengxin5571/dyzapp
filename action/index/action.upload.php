@@ -41,5 +41,22 @@ if($do=='fasixin_img'){
 		echo '{"code":"404"}';
 	}
 	exit;
+}elseif($do == "fasixin_img_ql"){
+    $uid = $_REQUEST['uid'];
+    $gid = $_REQUEST['gid'];
+    $groups_room=$_REQUEST['groups_room'];
+    $img=$file_url;
+    $nowtime=date('m月d日 H:i');
+    $cont=array('lx'=>1,'nr'=>$file_url,'time'=>date('m月d日 H:i'));
+    $cont=json_encode($cont);
+    $sql= "insert into rv_groups_xiaoxi (from_uid,togid,content,content_type) values(?,?,?,1)";
+    if($db->p_e($sql, array($uid,$gid,$img))){//成功后像socket 服务端推送数据
+        to_msg(array('type'=>'sixin_to_groups','cont'=>$cont,'to'=>$groups_room));//推送消息
+        echo '{"code":"200","time":"'.$nowtime.'"}';
+        exit();
+    }
+    echo '{"code":"500"}';
+    exit();
 }
+
 ?>

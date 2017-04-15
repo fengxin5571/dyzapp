@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-04-13 14:58:45
+<?php /* Smarty version Smarty-3.1.12, created on 2017-04-15 10:21:17
          compiled from ".\tpl\xiaoxi\xiaoxi.html" */ ?>
 <?php /*%%SmartyHeaderCode:2172058a42078623c81-80551899%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'fef5c462cf9a56d8a235d4d4ab360f9451711beb' => 
     array (
       0 => '.\\tpl\\xiaoxi\\xiaoxi.html',
-      1 => 1492066718,
+      1 => 1492222836,
       2 => 'file',
     ),
   ),
@@ -55,13 +55,14 @@ $_smarty_tpl->tpl_vars['row']->_loop = true;
 </div>
 </div>
 <?php } ?>
+
 <?php  $_smarty_tpl->tpl_vars['row'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['row']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['groups']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['row']->key => $_smarty_tpl->tpl_vars['row']->value){
 $_smarty_tpl->tpl_vars['row']->_loop = true;
 ?>
 <?php if ($_smarty_tpl->tpl_vars['row']->value['xiaoxi']||$_smarty_tpl->tpl_vars['row']->value['admin']){?>
-<div class="xiaoxi_list" onclick="open_xxdhk(<?php echo $_smarty_tpl->tpl_vars['row']->value['user']['id'];?>
+<div class="xiaoxi_list" onclick="open_qlxxdhk(<?php echo $_smarty_tpl->tpl_vars['row']->value['ug_id'];?>
 ,this)" tapmode='tap-active'>
 	<div class="xiaoxi_tx cur2">
 		<span class="name">群聊</span><p class="shuxian"></p>
@@ -77,7 +78,8 @@ $_smarty_tpl->tpl_vars['row']->_loop = true;
  : <?php echo $_smarty_tpl->tpl_vars['row']->value['xiaoxi']['content'];?>
 </p>
 		<?php }else{ ?>
-		<p class="xiaoxi_info2">收到一条消息</p>
+		<p class="xiaoxi_info2"><?php echo $_smarty_tpl->tpl_vars['row']->value['xiaoxi']['from_name'];?>
+发了一张图片</p>
 		<?php }?>
 		<?php }?>
 	</div>
@@ -86,4 +88,5 @@ $_smarty_tpl->tpl_vars['row']->_loop = true;
 <?php }?></div>
 </div>
 <?php }?>
-<?php } ?><?php }} ?>
+<?php } ?>
+<?php }} ?>
