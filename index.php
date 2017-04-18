@@ -26,6 +26,8 @@
 	$action=$_GET['action']??'index'; 	 //get action值     判断action的get传值是否为空，如果为空则返回空，否则返回action的Get传值
 	$do=$_GET['do']??'index';			 	 //get do值
 	$id=$_GET['id']??'';			 	 //get id值
+	
+	
 //执行页面
 	if(file_exists('action/'.$dir.'/action.'.$action.'.php')){
 		include('action/'.$dir.'/action.'.$action.'.php'); 

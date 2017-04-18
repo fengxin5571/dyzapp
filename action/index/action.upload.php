@@ -47,12 +47,13 @@ if($do=='fasixin_img'){
     $groups_room=$_REQUEST['groups_room'];
     $img=$file_url;
     $nowtime=date('m月d日 H:i');
-    $cont=array('lx'=>1,'nr'=>$file_url,'time'=>date('m月d日 H:i'));
+    $send_name=$db->select(0, 1, "rv_group_to_users","gu_group_nick",array("gu_gid=$gid","gu_uid=$uid"),"gu_id desc");
+    $cont=array('lx'=>1,'nr'=>$file_url,'time'=>date('m月d日 H:i'),"from_id"=>$uid,"send_name"=>$send_name[gu_group_nick]);
     $cont=json_encode($cont);
     $sql= "insert into rv_groups_xiaoxi (from_uid,togid,content,content_type) values(?,?,?,1)";
     if($db->p_e($sql, array($uid,$gid,$img))){//成功后像socket 服务端推送数据
         to_msg(array('type'=>'sixin_to_groups','cont'=>$cont,'to'=>$groups_room));//推送消息
-        echo '{"code":"200","time":"'.$nowtime.'"}';
+        echo '{"code":"200","time":"'.$nowtime.'","send_name":"'.$send_name[gu_group_nick].'"}';
         exit();
     }
     echo '{"code":"500"}';
