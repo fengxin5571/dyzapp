@@ -4,7 +4,7 @@ if(!defined('CORE'))exit("error!"); //检查某常量是否存在。
     $base64 = $_POST['formFile'];
     $IMG = base64_decode($base64);
 	$save_url="http://static.duyiwang.cn/image/";
-	$dir_name="D:/ansuai/uploadfile/image/";
+	$dir_name="D:/image/";
 	$ymd = date("Ymd");
 	$dir_name .= $ymd . "/";
 	$save_url .= $ymd . "/";
@@ -53,7 +53,7 @@ if($do=='fasixin_img'){
     $sql= "insert into rv_groups_xiaoxi (from_uid,togid,content,content_type) values(?,?,?,1)";
     if($db->p_e($sql, array($uid,$gid,$img))){//成功后像socket 服务端推送数据
         to_msg(array('type'=>'sixin_to_groups','cont'=>$cont,'to'=>$groups_room));//推送消息
-        echo '{"code":"200","time":"'.$nowtime.'","send_name":"'.$send_name[gu_group_nick].'"}';
+        echo '{"code":"200","url":"'.$file_url.'","time":"'.$nowtime.'","send_name":"'.$send_name[gu_group_nick].'"}';
         exit();
     }
     echo '{"code":"500"}';
