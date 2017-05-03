@@ -105,14 +105,14 @@ if($do == "add_groups"){
     $uid = $_REQUEST['uid'];
     $gid = $_REQUEST['gid'];
     $groups_room=$_REQUEST['groups_room'];
+    $at_user_ids=$_REQUEST['at_user_ids'];
     $txt=$_REQUEST['txt'];
     $nowtime=date('m月d日 H:i');
     $send_name=$db->select(0, 1, "rv_group_to_users","gu_group_nick",array("gu_gid=$gid","gu_uid=$uid"),"gu_id desc");
-    $cont=array('lx'=>0,'nr'=>$txt,'time'=>date('m月d日 H:i'),"from_id"=>$uid,"send_name"=>$send_name[gu_group_nick]);
+    $cont=array('lx'=>0,'nr'=>$txt,'time'=>date('m月d日 H:i'),"from_id"=>$uid,"send_name"=>$send_name[gu_group_nick],"at_user_ids"=>$at_user_ids);
     $cont=json_encode($cont);
     $sql= "insert into rv_groups_xiaoxi (from_uid,togid,content,content_type) values(?,?,?,0)";
     if($db->p_e($sql, array($uid,$gid,$txt))){//成功后像socket 服务端推送数据
-        
         to_msg(array('type'=>'sixin_to_groups','cont'=>$cont,'to'=>$groups_room));//推送消息
         echo '{"code":"200","time":"'.$nowtime.'","send_name":"'.$send_name[gu_group_nick].'"}';
         exit();
@@ -120,7 +120,31 @@ if($do == "add_groups"){
     echo '{"code":"500"}';
     exit();
    
-}elseif($do == "test"){
+}elseif ($do =="check_user_groups"){//查看本用户所在的群组
+    $uid = $_REQUEST['uid'];
+    $sql="select gu_gid from rv_group_to_users where gu_uid= ?";
+    $db->p_e($sql, array($uid));
+    $gids=$db->fetchAll();
+    if($gids){
+        echo '{"code":"200","groups_gids":'.json_encode($gids).'}';
+        exit();
+    }
+    echo '{"code":"500"}';
+    exit();
+}elseif ($do == "get_at_user_list"){//获取群内用户
+    $gid = $_REQUEST['gid'];
+    $uid = $_REQUEST['uid'];
+    $sql="select * from rv_group_to_users  where gu_gid= ? and gu_uid != ?";
+    $db->p_e($sql, array($gid,$uid));
+    $at_user_list=$db->fetchAll();
+    if($at_user_list){
+        echo '{"code":"200","at_user_list":'.json_encode($at_user_list).'}';
+        exit();
+    }
+    echo '{"code":"500"}';
+    exit();
+}
+elseif($do == "test"){
     $smt = new smarty();smarty_cfg($smt);
     $smt->display("test.html");
 }
