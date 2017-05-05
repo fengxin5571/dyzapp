@@ -109,10 +109,10 @@ if($do == "add_groups"){
     $txt=$_REQUEST['txt'];
     $nowtime=date('m月d日 H:i');
     $send_name=$db->select(0, 1, "rv_group_to_users","gu_group_nick",array("gu_gid=$gid","gu_uid=$uid"),"gu_id desc");
-    $cont=array('lx'=>0,'nr'=>$txt,'time'=>date('m月d日 H:i'),"from_id"=>$uid,"send_name"=>$send_name[gu_group_nick],"at_user_ids"=>$at_user_ids);
+    $cont=array('lx'=>0,'nr'=>$txt,'time'=>date('m月d日 H:i'),"from_id"=>$uid,"send_name"=>$send_name[gu_group_nick],"at_user_ids"=>$at_user_ids,"gid"=>$gid);
     $cont=json_encode($cont);
-    $sql= "insert into rv_groups_xiaoxi (from_uid,togid,content,content_type) values(?,?,?,0)";
-    if($db->p_e($sql, array($uid,$gid,$txt))){//成功后像socket 服务端推送数据
+    $sql= "insert into rv_groups_xiaoxi (from_uid,togid,content,content_type,at_user_ids) values(?,?,?,0,?)";
+    if($db->p_e($sql, array($uid,$gid,$txt,$at_user_ids))){//成功后像socket 服务端推送数据
         to_msg(array('type'=>'sixin_to_groups','cont'=>$cont,'to'=>$groups_room));//推送消息
         echo '{"code":"200","time":"'.$nowtime.'","send_name":"'.$send_name[gu_group_nick].'"}';
         exit();

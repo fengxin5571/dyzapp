@@ -41,7 +41,7 @@ if($do=="fasixin"){
 	$toid=$_POST['toid'];
 	$txt=$_POST['txt'];
 	$nowtime=date('m月d日 H:i');
-	$cont=array('lx'=>0,'nr'=>$txt,'time'=>date('m月d日 H:i'));
+	$cont=array('lx'=>0,'nr'=>$txt,'time'=>date('m月d日 H:i'),"toid"=>$uid);
 	$cont=json_encode($cont);
 	$sql="insert into rv_xiaoxi(uid,toid,content,content_type,type,status,is_du) values(?,?,?,0,1,1,1)";
 	if($db->p_e($sql,array($uid,$toid,$txt))){

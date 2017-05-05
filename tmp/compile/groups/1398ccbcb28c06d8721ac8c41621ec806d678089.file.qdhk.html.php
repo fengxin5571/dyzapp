@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-04-13 10:16:58
+<?php /* Smarty version Smarty-3.1.12, created on 2017-05-04 09:24:38
          compiled from ".\tpl\groups\qdhk.html" */ ?>
 <?php /*%%SmartyHeaderCode:1270258eedf23f21276-76884924%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '1398ccbcb28c06d8721ac8c41621ec806d678089' => 
     array (
       0 => '.\\tpl\\groups\\qdhk.html',
-      1 => 1492049810,
+      1 => 1493860626,
       2 => 'file',
     ),
   ),
@@ -33,7 +33,8 @@ $_smarty_tpl->tpl_vars['row']->_loop = true;
 	<span class="dh_time"><?php echo $_smarty_tpl->tpl_vars['row']->value['addtime1'];?>
 </span>
 	<div class="dh_tx dh_tx<?php if ($_smarty_tpl->tpl_vars['row']->value['type']==1){?>2<?php }else{ ?>1<?php }?>">
-		<span class="name"><?php echo $_smarty_tpl->tpl_vars['row']->value['from']['name'];?>
+		<span class="name" uid='<?php echo $_smarty_tpl->tpl_vars['row']->value['from_uid'];?>
+'><?php echo $_smarty_tpl->tpl_vars['row']->value['from']['name'];?>
 </span>
 		<p class="shuxian"></p>
 	</div>

@@ -49,6 +49,13 @@ if($do=="xiaoxi"){
 	    }
 	    if($from_xiaoxi){//有消息时
 	        $groups['xiaoxi']=$from_xiaoxi;
+	        $at_user_ids=json_decode($from_xiaoxi['at_user_ids']);
+	        foreach ($at_user_ids as $at_uid){
+	            if($at_uid == $uid){
+	                $groups['xiaoxi']['at_msg']=' [有人@你] ';
+	                break;
+	            }
+	        }
 	        $sql="SELECT count(*) from rv_groups_msg_details where guid=? and is_du=0 and gid=?";//获取未读信息
 	        $db->p_e($sql, array($uid,$groups['xiaoxi']['togid']));
 	        $groups['weidu']=$db->fetch_count();

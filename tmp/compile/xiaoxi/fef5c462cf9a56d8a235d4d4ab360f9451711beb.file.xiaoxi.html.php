@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.12, created on 2017-04-15 10:21:17
+<?php /* Smarty version Smarty-3.1.12, created on 2017-05-05 16:15:11
          compiled from ".\tpl\xiaoxi\xiaoxi.html" */ ?>
 <?php /*%%SmartyHeaderCode:2172058a42078623c81-80551899%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'fef5c462cf9a56d8a235d4d4ab360f9451711beb' => 
     array (
       0 => '.\\tpl\\xiaoxi\\xiaoxi.html',
-      1 => 1492222836,
+      1 => 1493972109,
       2 => 'file',
     ),
   ),
@@ -74,7 +74,8 @@ $_smarty_tpl->tpl_vars['row']->_loop = true;
 </p>
 		<?php if ($_smarty_tpl->tpl_vars['row']->value['xiaoxi']){?>
 		<?php if ($_smarty_tpl->tpl_vars['row']->value['xiaoxi']['content_type']==0){?>
-		<p class="xiaoxi_info2"><?php echo $_smarty_tpl->tpl_vars['row']->value['xiaoxi']['from_name'];?>
+		<p class="xiaoxi_info2"><font style="color:red"><?php echo $_smarty_tpl->tpl_vars['row']->value['xiaoxi']['at_msg'];?>
+</font> <?php echo $_smarty_tpl->tpl_vars['row']->value['xiaoxi']['from_name'];?>
  : <?php echo $_smarty_tpl->tpl_vars['row']->value['xiaoxi']['content'];?>
 </p>
 		<?php }else{ ?>

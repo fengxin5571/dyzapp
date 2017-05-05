@@ -28,7 +28,7 @@
 		<p class="xiaoxi_info1"><{$row.ug_name}></p>
 		<{if $row.xiaoxi}>
 		<{if $row.xiaoxi.content_type==0}>
-		<p class="xiaoxi_info2"><{$row.xiaoxi.from_name}> : <{$row.xiaoxi.content}></p>
+		<p class="xiaoxi_info2"><font style="color:red"><{$row.xiaoxi.at_msg}></font> <{$row.xiaoxi.from_name}> : <{$row.xiaoxi.content}></p>
 		<{else}>
 		<p class="xiaoxi_info2"><{$row.xiaoxi.from_name}>发了一张图片</p>
 		<{/if}>

@@ -2,7 +2,7 @@
 <div class="dh clearfix">
 	<span class="dh_time"><{$row.addtime1}></span>
 	<div class="dh_tx dh_tx<{if $row.type==1}>2<{else}>1<{/if}>">
-		<span class="name"><{$row.from.name}></span>
+		<span class="name" uid='<{$row.from_uid}>'><{$row.from.name}></span>
 		<p class="shuxian"></p>
 	</div>
 	<div class="dh_con dh_con<{if $row.type==1}>2<{else}>1<{/if}>">
