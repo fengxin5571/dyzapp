@@ -29,12 +29,16 @@ if($do == "add_groups"){
 }elseif($do == "qlxx"){//获取群聊信息
     $gid=$_REQUEST['gid'];//群聊id
     $uid=$_REQUEST['uid'];
+    $is_openwin=0;
     if($gid){
+        if($db->update(0, 1, "rv_user", array("is_openwin=1"),array("id=$uid"))){
+            $is_openwin=1;
+        }
         $sql=" SELECT * from rv_group_to_users where gu_gid=?";
         $db->p_e($sql, array($gid));
         $groups_users_list=json_encode($db->fetchAll());//群聊组员
         $groups_info=json_encode($db->select(0, 1, "rv_users_groups","*,date_format(ug_create_time,'%m月%d日 %H:%i') as ug_create_time_format",array("ug_id = $gid"),' ug_id desc'));//群聊信息
-        echo '{"code":"200","gid":"'.$gid.'","groups_info":'.$groups_info.',"groups_users_list":'.$groups_users_list.'}';
+        echo '{"code":"200","gid":"'.$gid.'","groups_info":'.$groups_info.',"groups_users_list":'.$groups_users_list.',"is_openwin":"'.$is_openwin.'"}';
         exit();
     }
     echo '{"code":"500"}';
@@ -106,10 +110,11 @@ if($do == "add_groups"){
     $gid = $_REQUEST['gid'];
     $groups_room=$_REQUEST['groups_room'];
     $at_user_ids=$_REQUEST['at_user_ids'];
+    $is_openwin=$_REQUEST['is_openwin'];
     $txt=$_REQUEST['txt'];
     $nowtime=date('m月d日 H:i');
     $send_name=$db->select(0, 1, "rv_group_to_users","gu_group_nick",array("gu_gid=$gid","gu_uid=$uid"),"gu_id desc");
-    $cont=array('lx'=>0,'nr'=>$txt,'time'=>date('m月d日 H:i'),"from_id"=>$uid,"send_name"=>$send_name[gu_group_nick],"at_user_ids"=>$at_user_ids,"gid"=>$gid);
+    $cont=array('lx'=>0,'nr'=>$txt,'time'=>date('m月d日 H:i'),"from_id"=>$uid,"send_name"=>$send_name[gu_group_nick],"at_user_ids"=>$at_user_ids,"gid"=>$gid,"is_openwin"=>$is_openwin);
     $cont=json_encode($cont);
     $sql= "insert into rv_groups_xiaoxi (from_uid,togid,content,content_type,at_user_ids) values(?,?,?,0,?)";
     if($db->p_e($sql, array($uid,$gid,$txt,$at_user_ids))){//成功后像socket 服务端推送数据

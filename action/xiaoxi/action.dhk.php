@@ -24,14 +24,22 @@ if($do=="dhk"){
 //对话人
 if($do=="dhr"){
 	$id=$_POST['id'];
-	$uid=$_POST['uid'];
+	$uid=$_REQUEST['uid'];
 	$sql="select name from rv_user where 1=1 and id=?";
 	$db->p_e($sql,array($id));
 	$to_name=$db->fetch_count();
 	$sql="select name from rv_user where 1=1 and id=?";
 	$db->p_e($sql,array($uid));
 	$wo_name=$db->fetch_count();
-	echo '{"code":"200","to_name":"'.$to_name.'","wo_name":"'.$wo_name.'"}';
+    $sql="select is_openwin from rv_user where 1=1 and id=?";
+    $db->p_e($sql,array($uid));
+    $is_openwin=$db->fetch_count();
+    if(!$is_openwin){
+       if($db->update(0, 1, "rv_user", array("is_openwin=1"),array("id=$uid"))){
+           $is_openwin=1;
+       }
+    }
+	echo '{"code":"200","to_name":"'.$to_name.'","wo_name":"'.$wo_name.'",is_openwin:"'.$is_openwin.'"}';
 	exit;
 }
 
@@ -40,8 +48,9 @@ if($do=="fasixin"){
 	$uid=$_POST['uid'];
 	$toid=$_POST['toid'];
 	$txt=$_POST['txt'];
+	$is_openwin=$_REQUEST['is_openwin'];
 	$nowtime=date('m月d日 H:i');
-	$cont=array('lx'=>0,'nr'=>$txt,'time'=>date('m月d日 H:i'),"toid"=>$uid);
+	$cont=array('lx'=>0,'nr'=>$txt,'time'=>date('m月d日 H:i'),"toid"=>$uid,"is_openwin"=>$is_openwin);
 	$cont=json_encode($cont);
 	$sql="insert into rv_xiaoxi(uid,toid,content,content_type,type,status,is_du) values(?,?,?,0,1,1,1)";
 	if($db->p_e($sql,array($uid,$toid,$txt))){
@@ -56,4 +65,7 @@ if($do=="fasixin"){
 		echo '{"code":"404"}';
 	}
 	exit;
+}else if($do == "update_openwin"){//更新用户窗口状态
+    $uid=$_POST['uid'];
+    $db->update(0, 1, "rv_user", array("is_openwin=0"),array("id=$uid"));
 }

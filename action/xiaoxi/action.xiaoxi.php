@@ -67,7 +67,6 @@ if($do=="xiaoxi"){
 	     
 	    
 	}
-    
 	//模版
 	$smt = new smarty();smarty_cfg($smt);
 	$smt->assign("groups",$user_groups_list);
